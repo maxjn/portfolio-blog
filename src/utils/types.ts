@@ -1,3 +1,4 @@
+// Global
 export type layoutProp = {
   children: React.ReactNode;
 };
@@ -7,6 +8,7 @@ export type buttonProps = {
   url: string;
 };
 
+// Portfolio
 export type catItemsType = {
   id: number;
   title: string;
@@ -26,4 +28,12 @@ export type categoryParams = {
   params: {
     category: catType;
   };
+};
+
+// Theme Context
+export type themeModeType = "light" | "dark";
+
+export type themeContextType = {
+  mode: themeModeType;
+  toggle: () => void;
 };

@@ -38,3 +38,37 @@
   font-size: 24px;
   font-weight: 300;
 }
+
+@media only screen and (max-width: 1199px) {
+  .container {
+    gap: 30px;
+  }
+}
+
+@media only screen and (max-width: 1112px) {
+  .container {
+    gap: 10px;
+  }
+}
+
+@media only screen and (max-width: 1095px) {
+  .container {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+    margin-top: 50px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .container {
+    margin-top: 20px;
+    gap: 0px;
+  }
+  .title {
+    font-size: 56px;
+  }
+  .item {
+    gap: 30px;
+  }
+}

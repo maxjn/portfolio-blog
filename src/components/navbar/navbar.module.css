@@ -10,6 +10,10 @@
   font-size: 22px;
 }
 
+.offcanvaslinks {
+  display: none;
+}
+
 .links {
   display: flex;
   align-items: center;
@@ -23,4 +27,61 @@
   color: white;
   cursor: pointer;
   border-radius: 3px;
+}
+
+.buttons {
+  display: none;
+  gap: 20px;
+  align-items: center;
+}
+
+.burgormenu {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1095px) {
+  .links {
+    gap: 18px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .container {
+    position: relative;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .offcanvaslinks {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 1rem 2rem;
+    position: absolute;
+    right: 0;
+    top: 100px;
+    border-radius: 1rem;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000,
+      -20px -18px 4px -18px rgba(0, 0, 0, 0);
+    box-shadow: 0px 10px 13px -7px #000000,
+      -20px -18px 4px -18px rgba(0, 0, 0, 0);
+    font-size: 1.4rem;
+    transition: 0.3s all ease;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    z-index: 10;
+    background-color: #fff;
+  }
+
+  .logout {
+    font-size: 1.4rem;
+  }
+
+  .buttons {
+    display: flex;
+  }
 }

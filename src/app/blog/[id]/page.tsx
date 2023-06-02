@@ -1,13 +1,34 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { PostType } from "@/utils/types";
 
-const SingleBlog = () => {
+async function getData<TData>(id: number): Promise<TData> {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    notFound();
+  }
+
+  return res.json() as TData;
+}
+
+type singlePostProps = {
+  params: {
+    id: number;
+  };
+};
+
+const SingleBlog = async ({ params }: singlePostProps) => {
+  const data = await getData<PostType>(params.id);
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.info}>
-          <h1 className={styles.title}>{"Title"}</h1>
+          <h1 className={styles.title}>{data.title}</h1>
           <p className={styles.desc}>{"Description"}</p>
           <div className={styles.author}>
             <Image

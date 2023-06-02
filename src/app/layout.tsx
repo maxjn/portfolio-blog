@@ -14,16 +14,18 @@ export const metadata = {
 
 export default function RootLayout({ children }: layoutProp) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
-      <body className={inter.className} suppressHydrationWarning={true}>
-        <ThemeContextProvider>
-          <div className="container">
-            <NavBar />
-            {children}
-            <Footer />
-          </div>
-        </ThemeContextProvider>
-      </body>
-    </html>
+    <>
+      <html lang="en" suppressHydrationWarning={true}>
+        <body className={inter.className} suppressHydrationWarning={true}>
+          <ThemeContextProvider>
+            <div className="container">
+              <NavBar />
+              {children}
+              <Footer />
+            </div>
+          </ThemeContextProvider>
+        </body>
+      </html>
+    </>
   );
 }

@@ -5,18 +5,45 @@
   margin-bottom: 50px;
 }
 
-.image{
+.image {
   object-fit: cover;
 }
 
 .content {
 }
 
-.title{
+.title {
   margin-bottom: 10px;
 }
 
-.desc{
+.desc {
   font-size: 18px;
   color: #999;
+}
+
+@media only screen and (max-width: 1100px) {
+  .image {
+    max-width: 300px;
+  }
+}
+@media only screen and (max-width: 1095px) {
+  .image {
+    max-width: 250px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .image {
+    max-width: initial;
+    width: 100%;
+  }
+  .imageContainer {
+    width: 100%;
+    max-height: 250px;
+    overflow: hidden;
+  }
+  .container {
+    flex-direction: column;
+    gap: 20px;
+  }
 }

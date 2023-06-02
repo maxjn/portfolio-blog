@@ -1,7 +1,9 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import { useState } from "react";
 import styles from "./navbar.module.css";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
+import { CiMenuFries } from "react-icons/ci";
 
 const links = [
   {
@@ -37,6 +39,8 @@ const links = [
 ];
 
 const NavBar = () => {
+  const [navToggle, setNavToggle] = useState(false);
+
   return (
     <header className={styles.container}>
       <Link href="/" className={styles.logo}>
@@ -46,6 +50,39 @@ const NavBar = () => {
         <DarkModeToggle />
         {links.map((link) => (
           <Link href={link.url} key={link.id} className={styles.link}>
+            {link.title}
+          </Link>
+        ))}
+        <button className={styles.logout}>Logout</button>
+      </nav>
+      <div className={styles.buttons}>
+        <DarkModeToggle />
+        <CiMenuFries
+          size={25}
+          onClick={() => setNavToggle((prev) => !prev)}
+          className={styles.burgormenu}
+        />
+      </div>
+      <nav
+        className={styles.offcanvaslinks}
+        style={
+          navToggle
+            ? {
+                display: "flex",
+                width: "fit-content",
+                height: "360px",
+                opacity: 1,
+              }
+            : {}
+        }
+      >
+        {links.map((link) => (
+          <Link
+            href={link.url}
+            key={link.id}
+            className={styles.link}
+            onClick={() => setNavToggle((prev) => !prev)}
+          >
             {link.title}
           </Link>
         ))}

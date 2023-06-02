@@ -38,3 +38,27 @@ a {
   flex-direction: column;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 1199px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+
+@media only screen and (max-width: 1095px) {
+  .container {
+    padding: 0 60px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+@media only screen and (max-width: 377px) {
+  .container {
+    padding: 0 20px;
+  }
+}

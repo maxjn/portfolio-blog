@@ -45,3 +45,16 @@
 .item:hover .title {
   color: #53c28b;
 }
+
+@media only screen and (max-width: 1095px) {
+  .items {
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 730px) {
+  .items {
+    justify-content: center;
+  }
+}

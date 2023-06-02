@@ -37,3 +37,9 @@ export type themeContextType = {
   mode: themeModeType;
   toggle: () => void;
 };
+
+// Post
+export type PostType = {
+  id: number;
+  title: string;
+};

@@ -5,8 +5,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PostType } from "@/utils/types";
 
+// Fetch Posts
 async function getData<TData>(): Promise<TData> {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+  const res = await fetch(`${process.env.NEXTAUTH_URL!}/api/posts`, {
     cache: "no-store",
   });
 
@@ -18,21 +19,15 @@ async function getData<TData>(): Promise<TData> {
 }
 
 const Blog = async () => {
-  const data = await getData<PostType[]>();
+  const posts = await getData<PostType[]>();
 
   return (
     <div className={styles.mainContainer}>
-      {data.map((post) => (
-        <Link
-          href={`/blog/${post.id}`}
-          className={styles.container}
-          key={post.id}
-        >
+      {posts.map(({ _id, title, description, image }) => (
+        <Link href={`/blog/${_id}`} className={styles.container} key={_id}>
           <div className={styles.imageContainer}>
             <Image
-              src={
-                "https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg"
-              }
+              src={image}
               alt=""
               width={400}
               height={250}
@@ -40,15 +35,8 @@ const Blog = async () => {
             />
           </div>
           <div className={styles.content}>
-            <h1 className={styles.title}>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio,
-              hic?
-            </h1>
-            <p className={styles.desc}>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-              unde earum omnis quibusdam corrupti odio repudiandae sit dolor
-              possimus veritatis repellat...
-            </p>
+            <h1 className={styles.title}>{title}</h1>
+            <p className={styles.desc}>{description}</p>
           </div>
         </Link>
       ))}

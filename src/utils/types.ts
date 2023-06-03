@@ -10,7 +10,7 @@ export type buttonProps = {
 
 // Portfolio
 export type catItemsType = {
-  id: number;
+  id: string;
   title: string;
   desc: string;
   image: string;
@@ -40,6 +40,16 @@ export type themeContextType = {
 
 // Post
 export type PostType = {
-  id: number;
+  _id: string;
   title: string;
+  description: string;
+  image: string;
+  content: string;
+  username: string;
+};
+
+export type SinglePostProps = {
+  params: {
+    id: string;
+  };
 };

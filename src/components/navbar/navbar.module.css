@@ -35,6 +35,33 @@
   align-items: center;
 }
 
+.signin_btn {
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: -10px;
+}
+
+.profile_image {
+  border-radius: 15px;
+}
+.username {
+  font-size: 15px;
+  max-width: 120px;
+}
+
+.auth_btns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .burgormenu {
   cursor: pointer;
 }
@@ -45,7 +72,7 @@
   }
 }
 
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 993px) {
   .container {
     position: relative;
   }

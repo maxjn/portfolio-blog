@@ -4,6 +4,7 @@ import { layoutProp } from "@/utils/types";
 import Footer from "@/components/footer/Footer";
 import NavBar from "@/components/navbar/NavBar";
 import { ThemeContextProvider } from "@/context/themeContext";
+import AuthProvider from "@/components/AuthProvider/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,11 +19,13 @@ export default function RootLayout({ children }: layoutProp) {
       <html lang="en" suppressHydrationWarning={true}>
         <body className={inter.className} suppressHydrationWarning={true}>
           <ThemeContextProvider>
-            <div className="container">
-              <NavBar />
-              {children}
-              <Footer />
-            </div>
+            <AuthProvider>
+              <div className="container">
+                <NavBar />
+                {children}
+                <Footer />
+              </div>
+            </AuthProvider>
           </ThemeContextProvider>
         </body>
       </html>

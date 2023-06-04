@@ -7,6 +7,7 @@ const connectToDB = async () => {
 
   if (isConnected) {
     console.log("MongoDb is connected");
+
     return;
   } else {
     try {

@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./navbar.module.css";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import { CiMenuFries } from "react-icons/ci";
+import Image from "next/image";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const links = [
   {
@@ -31,15 +33,21 @@ const links = [
     title: "Contact",
     url: "/contact",
   },
-  {
-    id: 6,
-    title: "Dashboard",
-    url: "/dashboard",
-  },
 ];
 
 const NavBar = () => {
+  const { data: session } = useSession();
+  const [providers, setProviders] = useState({});
   const [navToggle, setNavToggle] = useState(false);
+
+  // Getting Providers
+  useEffect(() => {
+    const setUpProviders = async () => {
+      const res = await getProviders();
+      setProviders(res);
+    };
+    setUpProviders();
+  }, []);
 
   return (
     <header className={styles.container}>
@@ -53,7 +61,49 @@ const NavBar = () => {
             {link.title}
           </Link>
         ))}
-        <button className={styles.logout}>Logout</button>
+        {session?.user ? ( //Logged in
+          <>
+            <button className={styles.logout} onClick={signOut} type="button">
+              Logout
+            </button>
+            <Link href="dashboard" key="/dashboard" className={styles.link}>
+              <div className={styles.profile}>
+                <p className={styles.username}>{session?.user.name}</p>
+                <Image
+                  src={session?.user.image}
+                  width={45}
+                  height={45}
+                  className={styles.profile_image}
+                  alt="profile"
+                  onClick={() => {
+                    setNavToggle((prev) => !prev);
+                  }}
+                />
+              </div>
+            </Link>
+          </>
+        ) : (
+          //Logged out
+          <>
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  className={styles.signin_btn}
+                  key={provider?.name}
+                  onClick={() => signIn(provider?.id)}
+                  title={provider?.name}
+                >
+                  <Image
+                    src={`/${provider?.id}.svg`}
+                    width={25}
+                    height={25}
+                    alt={provider?.name}
+                  />
+                </button>
+              ))}
+          </>
+        )}
       </nav>
       <div className={styles.buttons}>
         <DarkModeToggle />
@@ -70,7 +120,7 @@ const NavBar = () => {
             ? {
                 display: "flex",
                 width: "fit-content",
-                height: "360px",
+                height: "370px",
                 opacity: 1,
               }
             : {}
@@ -86,7 +136,54 @@ const NavBar = () => {
             {link.title}
           </Link>
         ))}
-        <button className={styles.logout}>Logout</button>
+        <div className={styles.auth_btns}>
+          {session?.user ? (
+            <>
+              <Link href="dashboard" key="/dashboard" className={styles.link}>
+                <div
+                  className={styles.profile}
+                  onClick={() => setNavToggle((prev) => !prev)}
+                >
+                  <p className={styles.username}>{session?.user.name}</p>
+                  <Image
+                    src={session?.user.image}
+                    width={55}
+                    height={55}
+                    className={styles.profile_image}
+                    alt="profile"
+                    onClick={() => {
+                      setNavToggle((prev) => !prev);
+                    }}
+                  />
+                </div>
+              </Link>
+              <button className={styles.logout} onClick={signOut} type="button">
+                Logout
+              </button>
+            </>
+          ) : (
+            //Logged out
+            <>
+              {providers &&
+                Object.values(providers).map((provider) => (
+                  <button
+                    type="button"
+                    className={styles.signin_btn}
+                    key={provider?.name}
+                    onClick={() => signIn(provider?.id)}
+                    title={provider?.name}
+                  >
+                    <Image
+                      src={`/${provider?.id}.svg`}
+                      width={25}
+                      height={25}
+                      alt={provider?.name}
+                    />
+                  </button>
+                ))}
+            </>
+          )}
+        </div>
       </nav>
     </header>
   );

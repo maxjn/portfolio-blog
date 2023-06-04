@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
 import { layoutProp } from "@/utils/types";
+import { SessionProvider } from "next-auth/react";
 
 const AuthProvider = ({ children }: layoutProp) => {
-  return { children };
+  return <SessionProvider>{children}</SessionProvider>;
 };
 
 export default AuthProvider;

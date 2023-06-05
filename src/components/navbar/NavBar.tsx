@@ -37,7 +37,7 @@ const links = [
 
 const NavBar = () => {
   const { data: session } = useSession();
-  const [providers, setProviders] = useState({});
+  const [providers, setProviders] = useState<any>({});
   const [navToggle, setNavToggle] = useState(false);
 
   // Getting Providers
@@ -63,14 +63,18 @@ const NavBar = () => {
         ))}
         {session?.user ? ( //Logged in
           <>
-            <button className={styles.logout} onClick={signOut} type="button">
+            <button
+              className={styles.logout}
+              onClick={() => signOut}
+              type="button"
+            >
               Logout
             </button>
             <Link href="dashboard" key="/dashboard" className={styles.link}>
               <div className={styles.profile}>
                 <p className={styles.username}>{session?.user.name}</p>
                 <Image
-                  src={session?.user.image}
+                  src={session?.user.image!}
                   width={45}
                   height={45}
                   className={styles.profile_image}
@@ -86,7 +90,7 @@ const NavBar = () => {
           //Logged out
           <>
             {providers &&
-              Object.values(providers).map((provider) => (
+              Object.values(providers).map((provider: any) => (
                 <button
                   type="button"
                   className={styles.signin_btn}
@@ -146,7 +150,7 @@ const NavBar = () => {
                 >
                   <p className={styles.username}>{session?.user.name}</p>
                   <Image
-                    src={session?.user.image}
+                    src={session?.user.image!}
                     width={55}
                     height={55}
                     className={styles.profile_image}
@@ -157,7 +161,11 @@ const NavBar = () => {
                   />
                 </div>
               </Link>
-              <button className={styles.logout} onClick={signOut} type="button">
+              <button
+                className={styles.logout}
+                onClick={() => signOut}
+                type="button"
+              >
                 Logout
               </button>
             </>
@@ -165,7 +173,7 @@ const NavBar = () => {
             //Logged out
             <>
               {providers &&
-                Object.values(providers).map((provider) => (
+                Object.values(providers).map((provider: any) => (
                   <button
                     type="button"
                     className={styles.signin_btn}

@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { PostType, HandleChange, ResetForm } from "@/utils/types";
+import { PostType, HandleChange } from "@/utils/types";
 import useSWR from "swr";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { useState } from "react";

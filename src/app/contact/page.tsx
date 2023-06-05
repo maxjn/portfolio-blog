@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
+import { name } from "./../../../.next/server/app/portfolio/[category]/page";
 
 export const metadata = {
   title: "Contact me",
@@ -10,7 +11,7 @@ export const metadata = {
 const Contact = () => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Let's Keep in Touch</h1>
+      <h1 className={styles.title}>Let&rsquo;s Keep in Touch</h1>
       <div className={styles.content}>
         <div className={styles.imgContainer}>
           <Image
@@ -20,16 +21,31 @@ const Contact = () => {
             className={styles.image}
           />
         </div>
-        <form className={styles.form}>
-          <input type="text" placeholder="name" className={styles.input} />
-          <input type="text" placeholder="email" className={styles.input} />
+        <form
+          className={styles.form}
+          action={`https://getform.io/f/64fe657d-69cd-4ab9-a899-474226923272`}
+          method="POST"
+        >
+          <input
+            type="text"
+            placeholder="name"
+            className={styles.input}
+            name="name"
+          />
+          <input
+            type="email"
+            placeholder="email"
+            className={styles.input}
+            name="email"
+          />
           <textarea
             className={styles.textArea}
             placeholder="message"
             cols={30}
             rows={10}
+            name="message"
           ></textarea>
-          <Button url="#" text="Send" />
+          <button type="submit"> Send</button>
         </form>
       </div>
     </div>

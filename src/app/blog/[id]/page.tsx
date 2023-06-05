@@ -38,7 +38,10 @@ const SingleBlog = async ({ params }: SinglePostProps) => {
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.desc}>{description}</p>
           <div className={styles.metadata}>
-            <Link className={styles.author} href={`/user/${creator._id}`}>
+            <Link
+              className={styles.author}
+              href={`/${creator.name}/${creator._id}`}
+            >
               <Image
                 src={creator.image}
                 alt=""

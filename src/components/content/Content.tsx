@@ -11,7 +11,7 @@ const Content = ({ content }: ContentProps) => {
 
     // Now ref.current is sure to be HTMLDivElement
     ref.current.innerHTML = content;
-  }, []);
+  }, [content]);
 
   return <div ref={ref}>Content</div>;
 };

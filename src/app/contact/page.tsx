@@ -1,7 +1,5 @@
 import styles from "./page.module.css";
 import Image from "next/image";
-import Button from "@/components/Button/Button";
-import { name } from "./../../../.next/server/app/portfolio/[category]/page";
 
 export const metadata = {
   title: "Contact me",

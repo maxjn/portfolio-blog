@@ -10,7 +10,7 @@ export type buttonProps = {
 
 // Portfolio
 export type catItemsType = {
-  id: string;
+  id: number;
   title: string;
   desc: string;
   image: string;

@@ -1,7 +1,7 @@
 import connectToDB from "@/utils/db";
 import Post from "@/models/postModel";
 
-export const POST = async (req) => {
+export const POST = async (req: any) => {
   const body = await req.json();
   try {
     await connectToDB();

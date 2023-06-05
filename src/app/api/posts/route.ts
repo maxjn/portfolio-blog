@@ -4,7 +4,7 @@ import Post from "@/models/postModel";
 export const GET = async (req) => {
   try {
     await connectToDB();
-    const posts = await Post.find();
+    const posts = await Post.find().populate("creator").sort({ createdAt: -1 });
 
     return new Response(JSON.stringify(posts), { status: 200 });
   } catch (error) {

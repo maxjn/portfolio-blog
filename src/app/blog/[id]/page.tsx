@@ -1,7 +1,11 @@
 import styles from "./page.module.css";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PostType, SinglePostProps } from "@/utils/types";
+import Content from "@/components/content/Content";
+// date fns
+import formatRelative from "date-fns/formatRelative";
 
 // Fetching Data
 async function getData<TData>(id: string): Promise<TData> {
@@ -24,7 +28,7 @@ export async function generateMetadata({ params }: SinglePostProps) {
 }
 
 const SingleBlog = async ({ params }: SinglePostProps) => {
-  const { _id, title, description, image, content, username } =
+  const { _id, title, description, image, content, creator, createdAt } =
     await getData<PostType>(params.id);
 
   return (
@@ -33,15 +37,21 @@ const SingleBlog = async ({ params }: SinglePostProps) => {
         <div className={styles.info}>
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.desc}>{description}</p>
-          <div className={styles.author}>
-            <Image
-              src={image}
-              alt=""
-              width={40}
-              height={40}
-              className={styles.avatar}
-            />
-            <span className={styles.username}>{username}</span>
+          <div className={styles.metadata}>
+            <Link className={styles.author} href={`/user/${creator._id}`}>
+              <Image
+                src={creator.image}
+                alt=""
+                width={40}
+                height={40}
+                className={styles.avatar}
+              />
+              <span className={styles.username}> {creator.name}</span>
+            </Link>
+
+            <p className={styles.time}>
+              {formatRelative(new Date(createdAt), new Date())}
+            </p>
           </div>
         </div>
         <div className={styles.imageContainer}>
@@ -49,7 +59,7 @@ const SingleBlog = async ({ params }: SinglePostProps) => {
         </div>
       </div>
       <div className={styles.content}>
-        <p className={styles.text}>{content}</p>
+        <Content content={content} />
       </div>
     </div>
   );

@@ -15,7 +15,10 @@ It's a serverless crud app with authentication and other features, explore the [
 
 ## Features
 
--
+- CRUD functionality
+- Search
+- Filter
+- Authentication
 
 ## Installation
 

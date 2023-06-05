@@ -1,4 +1,5 @@
 // Global
+import { Image } from "next/image";
 export type layoutProp = {
   children: React.ReactNode;
 };
@@ -45,11 +46,29 @@ export type PostType = {
   description: string;
   image: string;
   content: string;
-  username: string;
+  creator: {
+    _id: string;
+    name: string;
+    image: string;
+  };
+  createdAt: string;
 };
 
 export type SinglePostProps = {
   params: {
     id: string;
   };
+};
+
+export type ContentProps = {
+  content: string;
+};
+
+export type HandleChange = {
+  name: string;
+  value: string;
+};
+
+export type ResetForm = {
+  reset: () => {};
 };

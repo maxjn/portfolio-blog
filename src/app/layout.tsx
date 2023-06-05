@@ -6,7 +6,7 @@ import NavBar from "@/components/navbar/NavBar";
 import { ThemeContextProvider } from "@/context/themeContext";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
   title: "Maxjn",
@@ -16,11 +16,15 @@ export const metadata = {
 export default function RootLayout({ children }: layoutProp) {
   return (
     <>
-      <html lang="en" suppressHydrationWarning={true}>
-        <body className={inter.className} suppressHydrationWarning={true}>
+      <html
+        lang="en"
+        suppressHydrationWarning={true}
+        className={inter.className}
+      >
+        <body suppressHydrationWarning={true}>
           <ThemeContextProvider>
             <AuthProvider>
-              <div className="container">
+              <div className={`container`}>
                 <NavBar />
                 {children}
                 <Footer />

@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  width: 100%;
   gap: 100px;
 }
 
@@ -9,27 +10,47 @@
 
 .post {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin: 50px 0px;
+  gap: 10px;
 }
 
 .imgContainer {
   width: 200px;
   height: 100px;
-  position: Ū;
+  position: relative;
 }
 
-.img {
+.image {
   object-fit: cover;
+}
+
+.info {
+  max-width: 60%;
+}
+
+.desc {
+  font-size: 15px;
+  color: #999;
+}
+
+.btn_container {
+  min-width: 50px;
+  margin-left: auto;
 }
 
 .delete {
   cursor: pointer;
   color: red;
+  margin-right: 10px;
+}
+.edit {
+  cursor: pointer;
+  color: #53c28b;
 }
 
-.new {
+.form {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -55,4 +76,32 @@
   border-radius: 5px;
   color: #eee;
   font-weight: bold;
+}
+
+.button:disabled {
+  background-color: #64b18b;
+}
+
+@media screen and (max-width: 1220px) {
+  .container {
+    gap: 50px;
+  }
+  .posts {
+    flex-grow: 1.5;
+  }
+}
+@media screen and (max-width: 1095px) {
+  .container {
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width: 644px) {
+  .imgContainer {
+    width: 150px;
+    height: 100px;
+  }
+  .postTitle {
+    font-size: large;
+  }
 }

@@ -2,7 +2,7 @@ import connectToDB from "@/utils/db";
 import Post from "@/models/postModel";
 import { SinglePostProps } from "@/utils/types";
 // GET
-export const GET = async (req, { params }: SinglePostProps) => {
+export const GET = async (req: any, { params }: SinglePostProps) => {
   const { id } = params;
 
   try {
@@ -16,7 +16,7 @@ export const GET = async (req, { params }: SinglePostProps) => {
 };
 
 // PATCH
-export const PATCH = async (req, { params }: SinglePostProps) => {
+export const PATCH = async (req: any, { params }: SinglePostProps) => {
   const { title, image, description, content } = await req.json();
   const { id } = params;
 
@@ -43,7 +43,7 @@ export const PATCH = async (req, { params }: SinglePostProps) => {
 };
 
 // DELETE
-export const DELETE = async (req, { params }: SinglePostProps) => {
+export const DELETE = async (req: any, { params }: SinglePostProps) => {
   const { id } = params;
 
   try {

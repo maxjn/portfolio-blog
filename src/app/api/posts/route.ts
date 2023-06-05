@@ -1,7 +1,7 @@
 import connectToDB from "@/utils/db";
 import Post from "@/models/postModel";
 
-export const GET = async (req) => {
+export const GET = async () => {
   try {
     await connectToDB();
     const posts = await Post.find().populate("creator").sort({ createdAt: -1 });
